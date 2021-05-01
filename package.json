@@ -1,0 +1,21 @@
+{
+    "name": "preact-starter",
+    "version": "0.0.1",
+    "description": "A simple project using Preact.js and esbuild. What could go wrong?",
+    "dependencies": {
+        "mithril": "^2.0.4",
+        "preact": "^10.5.13",
+        "wouter": "^2.7.4"
+    },
+    "devDependencies": {
+        "esbuild": "^0.11.17"
+    },
+    "scripts": {
+        "build-webpack": "npx webpack --config webpack.prod.js",
+        "start-webpack": "npx webpack serve --config webpack.dev.js",
+        "build": "esbuild src/main.js --bundle --outfile=dist/js/main.js --minify --sourcemap --sources-content=false --target=es2015",
+        "start": "esbuild src/main.js --bundle --sourcemap --target=es2015 --serve=127.0.0.1:8000 --servedir=public/ --outfile=public/js/main.js",
+        "build-jsx": "esbuild src/main.js --bundle --outdir=dist/js/main.js --minify --sourcemap --sources-content=false --loader:.js=jsx --jsx-factory=h --jsx-fragment=Fragment --target=es2015",
+        "start-jsx": "esbuild src/main.js --bundle --sourcemap --loader:.js=jsx --jsx-factory=h --jsx-fragment=Fragment --target=es2015 --serve=127.0.0.1:8000 --servedir=public/ --outfile=public/js/main.js"
+    }
+}
