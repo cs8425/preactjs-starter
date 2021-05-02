@@ -1,5 +1,18 @@
 # preact.js starter project
 
+## 3步驟使用
+
+1. 安裝相依套件: `npm install`
+2. 啟動開發模式: `npm run start`
+3. 瀏覽器打開: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+
+## 檔案架構
+	* `src/` : code
+		* `main.js` : entry
+		* `comp.jsx` : 組件, jsx版
+		* `comp.js` : 組件, js版
+	* `public/` : html & 圖片等共用資源
+
 ## 基本用法
 
 * 開發
@@ -26,12 +39,6 @@
 	* 快速選: `webpack: swc + esbuild` `npm run build-swc-esbuild`
 	* 高級: 自己組合
 
-## 檔案架構
-	* `src/` : code
-		* `main.js` : entry
-		* `comp.jsx` : 組件, jsx版
-		* `comp.js` : 組件, js版
-	* `public/` : html & 圖片等共用資源
 
 ### dependencies
 
