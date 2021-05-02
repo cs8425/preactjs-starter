@@ -3,19 +3,36 @@
     "version": "0.0.1",
     "description": "A simple project using Preact.js and esbuild. What could go wrong?",
     "dependencies": {
-        "mithril": "^2.0.4",
         "preact": "^10.5.13",
         "wouter-preact": "^2.7.4"
     },
     "devDependencies": {
-        "esbuild": "^0.11.17"
+        "@babel/core": "^7.14.0",
+        "@babel/plugin-proposal-optional-chaining": "^7.13.12",
+        "@babel/plugin-transform-react-jsx": "^7.13.12",
+        "babel-loader": "^8.2.2",
+        "clean-webpack-plugin": "^4.0.0-alpha.0",
+        "cross-env": "^7.0.3",
+        "esbuild": "^0.11.17",
+        "esbuild-loader": "^2.12.0",
+        "html-webpack-plugin": "^5.3.1",
+        "source-map-loader": "^2.0.1",
+        "swc-loader": "^0.1.14",
+        "webpack": "^5.36.2",
+        "webpack-cli": "^4.6.0",
+        "webpack-dev-server": "^3.11.2",
+        "webpack-merge": "^5.7.3"
     },
     "scripts": {
-        "build-webpack": "npx webpack --config webpack.prod.js",
-        "start-webpack": "npx webpack serve --config webpack.dev.js",
-        "build": "esbuild src/main.js --bundle --outfile=dist/js/main.js --minify --sourcemap --sources-content=false --target=es2015",
-        "start": "esbuild src/main.js --bundle --sourcemap --target=es2015 --serve=127.0.0.1:8000 --servedir=public/ --outfile=public/js/main.js",
+        "build": "cross-env TRANSPILER=babel cross-env MINIMIZER=esbuild npx webpack --config webpack.prod.js",
+        "build-esbuild": "cross-env TRANSPILER=babel npx webpack --config webpack.prod.js",
+        "build-swc": "cross-env TRANSPILER=swc npx webpack --config webpack.prod.js",
+        "build-swc-esbuild": "cross-env TRANSPILER=swc cross-env MINIMIZER=esbuild npx webpack --config webpack.prod.js",
+        "start-webpack": "cross-env TRANSPILER=babel npx webpack serve --config webpack.dev.js",
+        "start-webpack-swc": "cross-env TRANSPILER=swc npx webpack serve --config webpack.dev.js",
+        "build-es": "esbuild src/main.js --bundle --outfile=dist/js/main.js --minify --sourcemap --sources-content=false --target=es2015",
+        "start-es": "esbuild src/main.js --bundle --sourcemap --target=es2015 --serve=127.0.0.1:8000 --servedir=public/ --outfile=public/js/main.js",
         "build-jsx": "esbuild src/main.js --bundle --outdir=dist/js/main.js --minify --sourcemap --sources-content=false --loader:.js=jsx --jsx-factory=h --jsx-fragment=Fragment --target=es2015",
-        "start-jsx": "esbuild src/main.js --bundle --sourcemap --loader:.js=jsx --jsx-factory=h --jsx-fragment=Fragment --target=es2015 --serve=127.0.0.1:8000 --servedir=public/ --outfile=public/js/main.js"
+        "start": "esbuild src/main.js --bundle --sourcemap --loader:.js=jsx --jsx-factory=h --jsx-fragment=Fragment --target=es2015 --serve=127.0.0.1:8000 --servedir=public/ --outfile=public/js/main.js"
     }
 }
